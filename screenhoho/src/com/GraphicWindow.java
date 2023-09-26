@@ -1,6 +1,7 @@
 package com;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -22,6 +23,7 @@ public class GraphicWindow extends JFrame {
 		setTitle("화면 호호기");
         setResizable(false);
 		setLayout(new FlowLayout()); //버튼 크기 임의조정
+		getContentPane().setBackground(Color.WHITE);
 		
 		swc = new JButton("실행중");
 		swc.addActionListener(new SwcListner());
@@ -30,6 +32,7 @@ public class GraphicWindow extends JFrame {
 		
 		panel = new JPanel();
 		panel.add(swc);
+		panel.setBackground(Color.WHITE);
 		
 		add(panel);
 		setVisible(true);
