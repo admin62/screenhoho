@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 public class GraphicWindow extends JFrame {
@@ -27,7 +28,7 @@ public class GraphicWindow extends JFrame {
 	JPanel panel;
 	JButton swcButton;
 	JLabel lbl;
-	NumericTextField txtIn;
+	JTextArea txtIn;
 
 	public GraphicWindow() throws AWTException {
 		setupFrame();
@@ -89,7 +90,7 @@ public class GraphicWindow extends JFrame {
 	}
 	
 	private void setupTxtIn() {
-		txtIn = new NumericTextField();
+		txtIn = new JTextArea();
 		txtIn.setBounds(0, 0, 50, 20);
 		txtIn.setFont(new Font(FONT_FAMILY, Font.PLAIN, 15));
 		txtIn.setText(SLEEP_TERM);

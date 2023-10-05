@@ -5,13 +5,15 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 
+import javax.swing.JTextArea;
+
 public class MouseMover extends Thread {
 	static boolean run;
 	Robot rb;
 	PointerInfo pt;
-	static NumericTextField txtIn;
+	static JTextArea txtIn;
 	
-	public MouseMover(NumericTextField txtIn) {
+	public MouseMover(JTextArea txtIn) {
 		System.out.println("MouseMover()");
 		MouseMover.txtIn = txtIn;
 		run = true;

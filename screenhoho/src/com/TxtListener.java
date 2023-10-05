@@ -1,13 +1,15 @@
 package com;
 
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class TxtListener implements DocumentListener{
-	NumericTextField txtIn;
+	JTextArea txtIn;
 	static final String SLEEP_TERM = "1";
 	
-	public TxtListener(NumericTextField txtIn) {
+	public TxtListener(JTextArea txtIn) {
 		this.txtIn = txtIn;
 	}
 
@@ -27,12 +29,16 @@ public class TxtListener implements DocumentListener{
 	}
 	
 	public void check() {
+		System.out.println("check() txtIn"+txtIn.getText());
 		if (txtIn.getText().length() > 3 || !txtIn.getText().matches("\\d*")) { // if the text is not a three-digit number
 			txtIn.setText(txtIn.getText().substring(0, txtIn.getText().length() - 1)); // remove the last character
-
-			if(txtIn.getText().length() < 1 || txtIn.getText().isEmpty()) {
-				txtIn.setText(SLEEP_TERM);
-			}
 		}
+		
+		SwingUtilities.invokeLater(new Runnable(){
+			@Override
+			public void run() {
+				if (txtIn.getText().isEmpty() || txtIn.getText().length() <= 0) txtIn.setText("1");
+			}
+		});
 	}
 }

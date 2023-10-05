@@ -5,12 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 public class SwcListener implements ActionListener {
 	MouseMover msMv;
-	NumericTextField txtIn;
+	JTextArea txtIn;
 	
-	public SwcListener(NumericTextField txtIn) throws AWTException {
+	public SwcListener(JTextArea txtIn) throws AWTException {
 		this.txtIn = txtIn;
 		
 		msMv = new MouseMover(txtIn);
