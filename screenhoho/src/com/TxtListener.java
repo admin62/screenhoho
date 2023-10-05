@@ -1,6 +1,5 @@
 package com;
 
-import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -28,17 +27,12 @@ public class TxtListener implements DocumentListener{
 	}
 	
 	public void check() {
-		SwingUtilities.invokeLater(new Runnable(){
-			@Override
-			public void run(){
-				if (txtIn.getText().length() > 3 || !txtIn.getText().matches("\\d*")) { // if the text is not a three-digit number
-					txtIn.setText(txtIn.getText().substring(0, txtIn.getText().length() - 1)); // remove the last character
-					
-					if(txtIn.getText().length() < 1 || txtIn.getText().isEmpty()) {
-						txtIn.setText(SLEEP_TERM);
-					}
-				}
+		if (txtIn.getText().length() > 3 || !txtIn.getText().matches("\\d*")) { // if the text is not a three-digit number
+			txtIn.setText(txtIn.getText().substring(0, txtIn.getText().length() - 1)); // remove the last character
+
+			if(txtIn.getText().length() < 1 || txtIn.getText().isEmpty()) {
+				txtIn.setText(SLEEP_TERM);
 			}
-		});
+		}
 	}
 }
