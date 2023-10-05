@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,10 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public class GraphicWindow extends JFrame {
 	static final long serialVersionUID = 1L;
@@ -65,7 +61,7 @@ public class GraphicWindow extends JFrame {
 	private void setupButton() throws AWTException {
 		swcButton = new JButton("실행중");
 		swcButton.addActionListener(new SwcListner(txtIn));
-		swcButton.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		swcButton.setFont(new Font(FONT_FAMILY, Font.PLAIN, 15));
 		
 		Insets insets = swcButton.getInsets();
 		int buttonWidthWithInsets = BUTTON_WIDTH + insets.left + insets.right;
