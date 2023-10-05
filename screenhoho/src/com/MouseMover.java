@@ -5,14 +5,19 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 
+import javax.swing.JTextArea;
+
 public class MouseMover extends Thread {
 	static boolean run;
 	Robot rb;
 	PointerInfo pt;
+	static JTextArea txtIn;
 	
-	public MouseMover() {
+	public MouseMover(JTextArea txtIn) {
 		System.out.println("MouseMover()");
+		MouseMover.txtIn = txtIn;
 		run = true;
+		
 		try {
 			rb = new Robot();
 		} catch (AWTException e) {
@@ -37,7 +42,7 @@ public class MouseMover extends Thread {
 	}
 	
     private static class SingletonHelper {
-        private static final MouseMover INSTANCE = new MouseMover();
+        private static final MouseMover INSTANCE = new MouseMover(txtIn);
     }
     
     public static MouseMover getInstance(){
@@ -46,7 +51,7 @@ public class MouseMover extends Thread {
     }
     
     public void main() {
-    	Thread trd = new MouseMover();
+    	Thread trd = new MouseMover(txtIn);
     	trd.start();
     }
     
@@ -56,20 +61,22 @@ public class MouseMover extends Thread {
 			pt = MouseInfo.getPointerInfo();
 			rb.mouseMove(pt.getLocation().x, pt.getLocation().y + 1);
 			try {
-				Thread.sleep(10);
+				Thread.sleep(10); //0.01초 대기
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			} //0.01초 대기
+			}
 			pt = MouseInfo.getPointerInfo();
 			rb.mouseMove(pt.getLocation().x, pt.getLocation().y - 1);
 			
 			System.out.println("MouseMover "+pt.getLocation().x + "," + pt.getLocation().y);
 			
 			try {
-				Thread.sleep(1000);
+				// Parse the text from txtIn as an integer and use it as the sleep duration.
+				int sleepDuration = txtIn.getText().isEmpty() ? 1000 : Integer.parseInt(txtIn.getText());
+				Thread.sleep(sleepDuration*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			} //570초 대기
+			}
 			
 			System.out.println("waiting for 570000 millisec");
 		}
