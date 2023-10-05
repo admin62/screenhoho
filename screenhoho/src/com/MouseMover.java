@@ -4,8 +4,10 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 public class MouseMover extends Thread {
 	static boolean run;
@@ -71,17 +73,22 @@ public class MouseMover extends Thread {
 			
 			System.out.println("MouseMover "+pt.getLocation().x + "," + pt.getLocation().y);
 			
-			Integer sleepDuration = 0;
 			try {
-				// Parse the text from txtIn as an integer and use it as the sleep duration.
-				sleepDuration = txtIn.getText().isEmpty() ? 1000 : Integer.parseInt(txtIn.getText());
-				Thread.sleep(sleepDuration*1000);
+				final int[] sleepDuration = new int[1];
+				
+				SwingUtilities.invokeAndWait(() -> {
+					String text = txtIn.getText();
+					sleepDuration[0] = text.isEmpty() ? 1000 : Integer.parseInt(text);
+				});
+			    
+			    Thread.sleep(sleepDuration[0]*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
-			
-			System.out.println("waiting for " + sleepDuration + " sec");
 		}
     }
 }
