@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class SwcListner implements ActionListener {
+public class SwcListener implements ActionListener {
 	MouseMover msMv;
 	NumericTextField txtIn;
 	
-	public SwcListner(NumericTextField txtIn) throws AWTException {
+	public SwcListener(NumericTextField txtIn) throws AWTException {
 		this.txtIn = txtIn;
 		
 		msMv = new MouseMover(txtIn);

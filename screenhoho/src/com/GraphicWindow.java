@@ -59,7 +59,7 @@ public class GraphicWindow extends JFrame {
 
 	private void setupButton() throws AWTException {
 		swcButton = new JButton("실행중");
-		swcButton.addActionListener(new SwcListner(txtIn));
+		swcButton.addActionListener(new SwcListener(txtIn));
 		swcButton.setFont(new Font(FONT_FAMILY, Font.PLAIN, 15));
 		
 		Insets insets = swcButton.getInsets();
