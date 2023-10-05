@@ -22,7 +22,7 @@ public class GraphicWindow extends JFrame {
 	static final Integer BUTTON_WIDTH = 150;
 	static final Integer BUTTON_HEIGHT = 100;
 	
-	static final String SLEEP_TERM = "1"; // 초 단위
+	static final String SLEEP_TERM = "570"; // 초 단위
 	static final String FONT_FAMILY = "맑은 고딕";
 
 	JPanel panel;
@@ -45,7 +45,7 @@ public class GraphicWindow extends JFrame {
 	private void setupFrame() {
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("화면 호호기");
+		setTitle("화면호호기");
 		setResizable(false);
         
 		getContentPane().setBackground(Color.WHITE);
