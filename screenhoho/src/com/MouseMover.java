@@ -5,15 +5,13 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 
-import javax.swing.JTextArea;
-
 public class MouseMover extends Thread {
 	static boolean run;
 	Robot rb;
 	PointerInfo pt;
-	static JTextArea txtIn;
+	static NumericTextField txtIn;
 	
-	public MouseMover(JTextArea txtIn) {
+	public MouseMover(NumericTextField txtIn) {
 		System.out.println("MouseMover()");
 		MouseMover.txtIn = txtIn;
 		run = true;
@@ -22,6 +20,7 @@ public class MouseMover extends Thread {
 			rb = new Robot();
 		} catch (AWTException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -70,15 +69,17 @@ public class MouseMover extends Thread {
 			
 			System.out.println("MouseMover "+pt.getLocation().x + "," + pt.getLocation().y);
 			
+			Integer sleepDuration = 0;
 			try {
 				// Parse the text from txtIn as an integer and use it as the sleep duration.
-				int sleepDuration = txtIn.getText().isEmpty() ? 1000 : Integer.parseInt(txtIn.getText());
+				sleepDuration = txtIn.getText().isEmpty() ? 1000 : Integer.parseInt(txtIn.getText());
 				Thread.sleep(sleepDuration*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			
-			System.out.println("waiting for 570000 millisec");
+			System.out.println("waiting for " + sleepDuration + " sec");
 		}
     }
 }

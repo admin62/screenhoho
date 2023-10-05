@@ -1,15 +1,14 @@
 package com;
 
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class TxtListener implements DocumentListener{
-	JTextArea txtIn;
-	static final String SLEEP_TERM = "1000";
+	NumericTextField txtIn;
+	static final String SLEEP_TERM = "1";
 	
-	public TxtListener(JTextArea txtIn) {
+	public TxtListener(NumericTextField txtIn) {
 		this.txtIn = txtIn;
 	}
 
