@@ -1,4 +1,4 @@
-package com;
+package com.view;
 
 import java.awt.AWTException;
 import java.awt.Color;
@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
+
+import com.component.SwcListener;
+import com.component.TxtListener;
 
 public class GraphicWindow extends JFrame {
 	static final long serialVersionUID = 1L;

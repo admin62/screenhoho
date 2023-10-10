@@ -1,4 +1,4 @@
-package com;
+package com.component;
 
 import java.awt.AWTException;
 import java.awt.event.ActionEvent;
