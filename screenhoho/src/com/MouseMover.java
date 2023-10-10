@@ -5,6 +5,7 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalTime;
 
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -19,6 +20,7 @@ public class MouseMover extends Thread {
 		System.out.println("MouseMover()");
 		MouseMover.txtIn = txtIn;
 		run = true;
+		pt = MouseInfo.getPointerInfo();
 		
 		try {
 			rb = new Robot();
@@ -61,34 +63,36 @@ public class MouseMover extends Thread {
     @Override
     public void run() {
 		while(run) {
-			pt = MouseInfo.getPointerInfo();
-			rb.mouseMove(pt.getLocation().x, pt.getLocation().y + 1);
-			try {
-				Thread.sleep(10); //0.01초 대기
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			PointerInfo pt2 = MouseInfo.getPointerInfo();
+			System.out.println(LocalTime.now()+" MouseMover current "+pt.getLocation().x + "," + pt.getLocation().y);
+
+			if((pt.getLocation().x == pt2.getLocation().x) && (pt.getLocation().y == pt2.getLocation().y)) {
+				try {
+					rb.mouseMove(pt.getLocation().x, pt.getLocation().y - 1);
+					System.out.println(LocalTime.now()+" MouseMover not moved. so "+pt.getLocation().x + "," + pt.getLocation().y);
+					
+					Thread.sleep(10);
+					rb.mouseMove(pt.getLocation().x, pt.getLocation().y + 1);
+					System.out.println(LocalTime.now()+" MouseMover not moved so now move to"+pt.getLocation().x + "," + pt.getLocation().y);
+					
+					final int[] sleepDuration = new int[1];
+					
+					SwingUtilities.invokeAndWait(() -> {
+						String text = txtIn.getText();
+						sleepDuration[0] = text.isEmpty() ? 1 : Integer.parseInt(text);
+					});
+				    
+				    Thread.sleep(sleepDuration[0]*1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
 			}
+			
 			pt = MouseInfo.getPointerInfo();
-			rb.mouseMove(pt.getLocation().x, pt.getLocation().y - 1);
-			
-			System.out.println("MouseMover "+pt.getLocation().x + "," + pt.getLocation().y);
-			
-			try {
-				final int[] sleepDuration = new int[1];
-				
-				SwingUtilities.invokeAndWait(() -> {
-					String text = txtIn.getText();
-					sleepDuration[0] = text.isEmpty() ? 1000 : Integer.parseInt(text);
-				});
-			    
-			    Thread.sleep(sleepDuration[0]*1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}
 		}
     }
 }

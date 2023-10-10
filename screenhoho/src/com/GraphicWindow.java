@@ -39,11 +39,13 @@ public class GraphicWindow extends JFrame {
 		setupLabel();
 		setupButton();
 		
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		
 		setVisible(true);
 	}
 
 	private void setupFrame() {
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		//setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("화면호호기");
 		setResizable(false);
@@ -64,17 +66,21 @@ public class GraphicWindow extends JFrame {
 		swcButton.setFont(new Font(FONT_FAMILY, Font.PLAIN, 15));
 		
 		Insets insets = swcButton.getInsets();
-		int buttonWidthWithInsets = BUTTON_WIDTH + insets.left + insets.right;
-		int buttonHeightWithInsets = BUTTON_HEIGHT + insets.top + insets.bottom;
+		int buttonWidthWithInsets = BUTTON_WIDTH + insets.left; // 왜인지는 모르겠으나 inset 오차가 양쪽중 하나만 있음.
+		int buttonHeightWithInsets = BUTTON_HEIGHT + insets.top + insets.bottom; // bottom 은 포기
 		
 		// Calculate the position to center the button
 		int xPos = (FRAME_WIDTH - buttonWidthWithInsets) / 2;
 		int yPos = (FRAME_HEIGHT - buttonHeightWithInsets) / 2;
-		System.out.println("xPos"+xPos);
-		System.out.println("yPos"+yPos);
-		System.out.println("this.getWidth()"+this.getWidth());
-		System.out.println("this.getHeight()"+this.getHeight());
-		System.out.println("inset"+swcButton.getInsets());
+		System.out.println("xPos "+xPos);
+		System.out.println("yPos "+yPos);
+		System.out.println("this.getWidth() "+this.getWidth());
+		System.out.println("this.getHeight() "+this.getHeight());
+		System.out.println("buttonWidthWithInsets "+buttonWidthWithInsets);
+		System.out.println("buttonHeightWithInsets "+buttonHeightWithInsets);
+		System.out.println("inset "+insets.left);
+		System.out.println("inset "+insets.right);
+		System.out.println("inset "+swcButton.getInsets());
 
 		swcButton.setBounds(xPos, 50, BUTTON_WIDTH, BUTTON_HEIGHT);
 
