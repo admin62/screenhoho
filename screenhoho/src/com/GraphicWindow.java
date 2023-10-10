@@ -72,17 +72,8 @@ public class GraphicWindow extends JFrame {
 		// Calculate the position to center the button
 		int xPos = (FRAME_WIDTH - buttonWidthWithInsets) / 2;
 		int yPos = (FRAME_HEIGHT - buttonHeightWithInsets) / 2;
-		System.out.println("xPos "+xPos);
-		System.out.println("yPos "+yPos);
-		System.out.println("this.getWidth() "+this.getWidth());
-		System.out.println("this.getHeight() "+this.getHeight());
-		System.out.println("buttonWidthWithInsets "+buttonWidthWithInsets);
-		System.out.println("buttonHeightWithInsets "+buttonHeightWithInsets);
-		System.out.println("inset "+insets.left);
-		System.out.println("inset "+insets.right);
-		System.out.println("inset "+swcButton.getInsets());
 
-		swcButton.setBounds(xPos, 50, BUTTON_WIDTH, BUTTON_HEIGHT);
+		swcButton.setBounds(xPos, yPos, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 		panel.add(swcButton); // Add button to the panel
 	}
